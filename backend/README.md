@@ -4,24 +4,31 @@
 
 1. Make sure python and vscode are installed.
 2. Add Conda to the System PATH
-   Follow these steps to add the necessary paths to your system's PATH environment variable:
-
-For Windows 10/11:
-Open Environment Variables:
-
-Right-click on the Start menu and select System.
-Click on Advanced system settings on the left side.
-In the System Properties window, click on the Environment Variables button.
-Edit the PATH Variable:
-
-In the Environment Variables window, find the Path variable under System variables (or User variables if you only want to add it for your user account) and select it.
-Click on Edit.
-Add the New Paths:
-
-In the Edit Environment Variable window, click New and add the following paths one by one:
-C:\Users\${user}\anaconda3
-C:\Users\${user}\anaconda3\Scripts
-C:\Users\${user}\anaconda3\Library\bin
+      For Windows 10/11:
+      1. Open Environment Variables:
+         Right-click on the Start menu, select System.
+         Click Advanced system settings > Environment Variables.
+      2. Edit the PATH Variable:
+      Under System variables (or User variables), find and select Path.
+      Click Edit.
+      3. Add the New Paths:
+      Click New and add:
+         C:\Users\${user}\anaconda3
+         C:\Users\${user}\anaconda3\Scripts
+         C:\Users\${user}\anaconda3\Library\bin
+      --------------------------------------------------------   
+      For Linux/macOS:
+      1. Open Terminal.
+      2. Edit the Shell Profile:
+      Use a text editor to open your shell profile file:
+         Bash: nano ~/.bashrc
+         Zsh: nano ~/.zshrc
+      3. Add Conda to PATH:
+      Add the following line:
+         export PATH="$HOME/anaconda3/bin:$PATH"
+      4. Apply Changes:
+      Save and close the file.
+      Run source ~/.bashrc or source ~/.zshrc.
 
 3. Install the dependencies in `environment.yml` via one of these methods:
    - Clone the conda environment (probably better). Download conda/conda navigator, in conda navigator import `environment.yml`, launch vscode under 'Flask' environment. Or just create the conda environment in CLI using `conda env create -f environment.yml`, `conda activate Flask`
