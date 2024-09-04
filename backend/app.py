@@ -1,11 +1,17 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_cors import CORS  # Import CORS
 import requests
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app) # initialize db with settings from app
+db = SQLAlchemy(app)
+
+# Rest of your app code...
+
 
 class pr(db.Model):
     id = db.Column(db.Integer, primary_key=True)
