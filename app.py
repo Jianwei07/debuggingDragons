@@ -49,7 +49,7 @@ def index():
 # Bitbucket credentials and repository details
 BITBUCKET_USERNAME = 'your_username'
 BITBUCKET_REPO_SLUG = 'your_repo_slug'
-ACCESS_TOKEN = 'your_access_token'
+ACCESS_TOKEN = 'your_access_token' # Need to find out how to get our access token
 
 def get_files_diff(pr_id):
     """
