@@ -27,6 +27,7 @@ attrs @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/attrs_1699
 Automat @ file:///tmp/build/80754af9/automat_1600298431173/work
 autopep8 @ file:///croot/autopep8_1708962882016/work
 Babel @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/babel_1699475785740/work
+backcall==0.2.0
 bcrypt @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/bcrypt_1699483842258/work
 beautifulsoup4 @ file:///C:/b/abs_d5wytg_p0w/croot/beautifulsoup4-split_1718029833749/work
 binaryornot @ file:///tmp/build/80754af9/binaryornot_1617751525010/work
@@ -38,8 +39,9 @@ boltons @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/boltons_
 botocore @ file:///C:/b/abs_0dkeqep0ox/croot/botocore_1714460586193/work
 Bottleneck @ file:///C:/b/abs_f7un855idq/croot/bottleneck_1709069969633/work
 Brotli @ file:///C:/b/abs_3d36mno480/croot/brotli-split_1714483178642/work
+build==1.2.1
 cachetools @ file:///C:/b/abs_792zbtc0ua/croot/cachetools_1713977157919/work
-certifi @ file:///C:/b/abs_55jxithrm3/croot/certifi_1717618077850/work/certifi
+certifi @ file:///C:/b/abs_7bbxxprxir/croot/certifi_1720453609121/work/certifi
 cffi @ file:///C:/b/abs_78eb1_vq6z/croot/cffi_1714483206096/work
 chardet @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/chardet_1699498892802/work
 charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
@@ -48,7 +50,7 @@ cloudpickle @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/clou
 colorama @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/colorama_1699472650914/work
 colorcet @ file:///C:/b/abs_7ep0mfawez/croot/colorcet_1709758405232/work
 comm @ file:///C:/b/abs_67a8058udb/croot/comm_1709322909844/work
-conda @ file:///C:/b/abs_f3egtzumcq/croot/conda_1715635886039/work
+conda @ file:///C:/b/abs_69e_za3rd5/croot/conda_1722004627938/work
 conda-build @ file:///C:/b/abs_85st9w283e/croot/conda-build_1716991354861/work
 conda-content-trust @ file:///C:/b/abs_bdfatn_wzf/croot/conda-content-trust_1714483201909/work
 conda-libmamba-solver @ file:///croot/conda-libmamba-solver_1706733287605/work/src
@@ -75,6 +77,7 @@ diff-match-patch @ file:///Users/ktietz/demo/mc3/conda-bld/diff-match-patch_1630
 dill @ file:///C:/b/abs_f79eg27d2q/croot/dill_1715094735295/work
 distributed @ file:///C:/b/abs_27jqurd3gk/croot/distributed_1715844512065/work
 distro @ file:///C:/b/abs_71xr36ua5r/croot/distro_1714488282676/work
+docopt==0.6.2
 docstring-to-markdown @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/docstring-to-markdown_1699484265167/work
 docutils @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/docutils_1699474820579/work
 entrypoints @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/entrypoints_1699484295227/work
@@ -84,6 +87,8 @@ fastjsonschema @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/p
 filelock @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/filelock_1701807523603/work
 flake8 @ file:///C:/b/abs_caud66drfv/croot/flake8_1708965316778/work
 Flask @ file:///C:/b/abs_f9w7doyu0h/croot/flask_1716545924884/work
+Flask-Cors==5.0.0
+Flask-SQLAlchemy==3.1.1
 fonttools @ file:///C:/b/abs_f47gnfqnx0/croot/fonttools_1713551644747/work
 frozendict @ file:///C:/b/abs_2alamqss6p/croot/frozendict_1713194885124/work
 frozenlist @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/frozenlist_1699557027827/work
@@ -92,6 +97,7 @@ gensim @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/gensim_16
 gitdb @ file:///tmp/build/80754af9/gitdb_1617117951232/work
 GitPython @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/gitpython_1699557311544/work
 greenlet @ file:///C:/b/abs_a6c75ie0bc/croot/greenlet_1702060012174/work
+gunicorn==23.0.0
 h5py @ file:///C:/b/abs_c4ha_1xv14/croot/h5py_1715094776210/work
 HeapDict @ file:///Users/ktietz/demo/mc3/conda-bld/heapdict_1630598515714/work
 holoviews @ file:///C:/b/abs_a4v1zcmvb9/croot/holoviews_1718295339559/work
@@ -109,7 +115,7 @@ iniconfig @ file:///home/linux1/recipes/ci/iniconfig_1610983019677/work
 intake @ file:///C:/b/abs_15sg46u7x7/croot/intake_1717513827138/work
 intervaltree @ file:///Users/ktietz/demo/mc3/conda-bld/intervaltree_1630511889664/work
 ipykernel @ file:///C:/b/abs_c2u94kxcy6/croot/ipykernel_1705933907920/work
-ipython @ file:///C:/b/abs_7dmlwmkafn/croot/ipython_1718287997280/work
+ipython==8.12.3
 ipython-genutils @ file:///tmp/build/80754af9/ipython_genutils_1606773439826/work
 ipywidgets @ file:///C:/b/abs_4fgmepzmbu/croot/ipywidgets_1710961556913/work
 isort @ file:///C:/b/abs_50iy840e4z/croot/isort_1718291849200/work
@@ -174,7 +180,7 @@ mypy @ file:///C:/b/abs_66qgae7agv/croot/mypy-split_1718008473940/work
 mypy-extensions @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/mypy_extensions_1699482634516/work
 navigator-updater @ file:///C:/b/abs_22_3uaq2ey/croot/navigator-updater_1718030405023/work
 nbclient @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/nbclient_1701796752236/work
-nbconvert @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/nbconvert_1701806279884/work
+nbconvert==7.16.4
 nbformat @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/nbformat_1701796704118/work
 nest-asyncio @ file:///C:/b/abs_65d6lblmoi/croot/nest-asyncio_1708532721305/work
 networkx @ file:///C:/b/abs_3bxnu56g9d/croot/networkx_1717597507456/work
@@ -201,6 +207,8 @@ patsy @ file:///C:/b/abs_21hy_wyj13/croot/patsy_1718378184379/work
 pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
 pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
 pillow @ file:///C:/b/abs_95ls_qh4c2/croot/pillow_1714398870615/work
+pip-tools==7.4.1
+pipreqs==0.5.0
 pkce @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pkce_1699482718905/work
 pkginfo @ file:///C:/b/abs_bciypal17m/croot/pkginfo_1715696027839/work
 platformdirs @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/platformdirs_1701797392447/work
@@ -239,6 +247,7 @@ PyNaCl @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pynacl_16
 pyodbc @ file:///C:/b/abs_90kly0uuwz/croot/pyodbc_1705431396548/work
 pyOpenSSL @ file:///C:/b/abs_5449ditk12/croot/pyopenssl_1708386245896/work
 pyparsing @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pyparsing_1699476875614/work
+pyproject_hooks==1.1.0
 PyQt5==5.15.10
 PyQt5-sip @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pyqt-split_1699478669290/work/pyqt_sip
 PyQtWebEngine==5.15.6
@@ -356,6 +365,7 @@ xarray @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/xarray_16
 xlwings @ file:///C:/b/abs_6bsaqa795f/croot/xlwings_1718046948745/work
 xyzservices @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/xyzservices_1699548906163/work
 yapf @ file:///C:/b/abs_8aidayep18/croot/yapf_1708964372649/work
+yarg==0.1.9
 yarl @ file:///C:/b/abs_8bxwdyhjvp/croot/yarl_1701105248152/work
 zict @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/zict_1699548979005/work
 zipp @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/zipp_1707493775475/work
