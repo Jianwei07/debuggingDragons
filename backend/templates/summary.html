@@ -9,6 +9,18 @@
     <h1>Code review summary</h1>
     <body>
         <p>This page contains a summary of the code review of the latest PR</p>
+        <br>
+        {% if entry %}
+        <p><strong>ID:</strong> {{ entry.id }}</p>
+        <p><strong>PR ID:</strong> {{ entry.pr_id }}</p>
+        <p><strong>Source Branch</strong> {{ entry.sourceBranchName }}</p>
+        <p><strong>Target Branch:</strong> {{ entry.targetBranchName }}</p>
+        <p><strong>Content:</strong> {{ entry.content }}</p>
+        <p><strong>Feedback:</strong> {{ entry.feedback }}</p>
+        <p><strong>Data created:</strong> {{ entry.date_created }}</p>
+        {% else %}
+            <p>No pull requests available.</p>
+        {% endif %}
     </body>
 </div>
 {% endblock %}
