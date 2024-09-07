@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Environment variables
+.env
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+.env/
+.conda/
+
+# VS Code workspace settings
+.vscode/
+
+# MacOS files
+.DS_Store
+
+# Heroku logs
+*.log
+
+# Node modules (if any)
+node_modules/
+
+# Python packaging files
+*.egg
+*.egg-info/
+dist/
+build/
+.vercel
