@@ -1,10 +1,18 @@
-import os
 from flask import Flask, render_template, request, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_cors import CORS
-import requests
 from groq import Groq
+from dotenv import load_dotenv
+import requests
+import os
+
+# Load environment variables from a .env file
+load_dotenv()
+# Fetch values from the environment variables
+BITBUCKET_USERNAME = os.getenv("BITBUCKET_USERNAME")
+BITBUCKET_REPO_SLUG = os.getenv("BITBUCKET_REPO_SLUG")
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 
 app = Flask(__name__)
 CORS(app)
@@ -112,8 +120,11 @@ def analyze_code_with_llm(prompt, data):
     """
     Sends the data and prompt to Groq AI
     """
+    # Fetch the API key from the environment variable
+    groq_API = os.getenv("GROQ_API_KEY")
+
     client = Groq(
-        api_key="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"
+        groq_API
     )
     chat_completion = client.chat.completions.create(
         messages=[
@@ -132,7 +143,7 @@ def analyze_code_with_llm(prompt, data):
         ],
 
         # The language model which will generate the completion.
-        model="llama3-8b-8192",
+        model=os.getenv("GROQ_MODEL_NAME", "llama3-8b-8192"),
 
         #
         # Optional parameters
@@ -181,7 +192,7 @@ def create_sample_pr_entry():
             targetBranchName="feature-branch",
             content="This is a sample pull request content.",
             feedback="This is some sample feedback.",
-            date_created=datetime.utcnow()
+            date_created=datetime.now()
         )
         
         # Add and commit the entry to the database
