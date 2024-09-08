@@ -1,3 +1,5 @@
+import os
+import logging
 from flask import Flask, render_template, request, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -5,11 +7,14 @@ from flask_cors import CORS
 from groq import Groq
 from dotenv import load_dotenv
 import requests
-import os
+
+# Configure logging, remove after production
+logging.basicConfig(level=logging.INFO)
 
 # Load environment variables from a .env file
 load_dotenv()
-# Fetch values from the environment variables
+
+# Fetch values from environment variables
 BITBUCKET_USERNAME = os.getenv("BITBUCKET_USERNAME")
 BITBUCKET_REPO_SLUG = os.getenv("BITBUCKET_REPO_SLUG")
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
@@ -18,10 +23,8 @@ app = Flask(__name__)
 CORS(app)
 
 # Configure database URI
-if os.environ.get('DATABASE_URL'):
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("postgres://", "postgresql://", 1)
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+database_url = os.environ.get('DATABASE_URL', 'sqlite:///test.db').replace("postgres://", "postgresql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 
 db = SQLAlchemy(app)
 
@@ -54,10 +57,16 @@ def index():
             target_branch = pr_data['destination']['branch']['name']
             files_diff = get_files_diff(pr_id)
             files_diff = process_files_diff(files_diff)
-            # Retrieve prompt
-            prompt_file_path = 'prompttext.txt'
-            with open(prompt_file_path, 'r') as file:
-                prompt_text = file.read().strip()
+            
+            # Retrieve prompt text
+            prompt_file_path = 'prompttext'
+            try:
+                with open(prompt_file_path, 'r') as file:
+                    prompt_text = file.read().strip()
+            except FileNotFoundError:
+                logging.error(f"Prompt file not found: {prompt_file_path}")
+                return 'Prompt file not found', 404
+
             # Send to LLM
             feedback = analyze_code_with_llm(prompt_text, files_diff)
 
@@ -67,8 +76,9 @@ def index():
                 db.session.add(new_pr_diff)
                 db.session.commit()
                 return redirect('/summary/')
-            except:
-                return 'There was an issue adding a new pull request to the db.'
+            except Exception as e:
+                logging.error(f"Error adding pull request to the database: {e}")
+                return 'There was an issue adding a new pull request to the db.', 500
         return "OK", 200
     else:
         return render_template('index.html')
@@ -107,7 +117,7 @@ def get_files_diff(pr_id):
             detailed_changes.append(file_info)
         return detailed_changes
     else:
-        print(f"Failed to retrieve PR diff: {response.status_code} - {response.text}")
+        logging.error(f"Failed to retrieve PR diff: {response.status_code} - {response.text}")
         return []
 
 def process_files_diff(files_diff):
@@ -118,60 +128,38 @@ def process_files_diff(files_diff):
 
 def analyze_code_with_llm(prompt, data):
     """
-    Sends the data and prompt to Groq AI
+    Sends the data and prompt to Groq AI.
     """
     # Fetch the API key from the environment variable
     groq_API = os.getenv("GROQ_API_KEY")
 
-    client = Groq(
-        groq_API
-    )
-    chat_completion = client.chat.completions.create(
-        messages=[
-            # Set an optional system message. This sets the behavior of the
-            # assistant and can be used to provide specific instructions for
-            # how it should behave throughout the conversation.
-            {
-                "role": "system",
-                "content": prompt
-            },
-            # Set a user message for the assistant to respond to.
-            {
-                "role": "user",
-                "content": "Please help to review the following pull request data: " + "\n" + data
-            }
-        ],
+    # Initialize the Groq client correctly
+    client = Groq()
 
-        # The language model which will generate the completion.
-        model=os.getenv("GROQ_MODEL_NAME", "llama3-8b-8192"),
+    # Set API key or configure the client as required by the library
+    client.api_key = groq_API
 
-        #
-        # Optional parameters
-        #
+    if data is None:
+        data = ""  # Provide a default value if data is None
 
-        # Controls randomness: lowering results in less random completions.
-        # As the temperature approaches zero, the model will become deterministic
-        # and repetitive.
-        temperature=0.5,
+    try:
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": "Please help to review the following pull request data: " + "\n" + data}
+            ],
+            model=os.getenv("GROQ_MODEL_NAME", "llama3-8b-8192"),
+            temperature=0.5,
+            max_tokens=8192,
+            top_p=1,
+            stop=None,
+            stream=False,
+        )
+        return chat_completion.choices[0].message.content
 
-        # The maximum number of tokens to generate. Requests can use up to
-        # 32,768 tokens shared between prompt and completion. Default was 1024
-        max_tokens=32768,
-
-        # Controls diversity via nucleus sampling: 0.5 means half of all
-        # likelihood-weighted options are considered.
-        top_p=1,
-
-        # A stop sequence is a predefined or user-specified text string that
-        # signals an AI to stop generating content, ensuring its responses
-        # remain focused and concise. Examples include punctuation marks and
-        # markers like "[end]".
-        stop=None,
-
-        # If set, partial message deltas will be sent.
-        stream=False,
-    )
-    return chat_completion.choices[0].message.content
+    except Exception as e:
+        logging.error(f"Request error: {e}")
+        return "An error occurred while processing the request."
 
 
 @app.route('/summary/')
@@ -194,11 +182,9 @@ def create_sample_pr_entry():
             feedback="This is some sample feedback.",
             date_created=datetime.now()
         )
-        
-        # Add and commit the entry to the database
         db.session.add(sample_entry)
         db.session.commit()
-        print("Sample entry added successfully!")
+        logging.info("Sample entry added successfully!")
 
 #if __name__ == "__main__":
 #    port = int(os.environ.get("PORT", 5000))
